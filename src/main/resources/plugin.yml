@@ -1,0 +1,12 @@
+name: Zombies
+version: '${project.version}'
+main: org.zombiesplugin.zombies.Zombies
+api-version: '1.20'
+
+commands:
+  arena:
+    description: Arena Commands
+    usage: /arena
+  dev:
+      description: Dev Commands
+      usage: /dev
