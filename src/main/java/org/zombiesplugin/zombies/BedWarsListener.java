@@ -2,6 +2,7 @@ package org.zombiesplugin.zombies;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +11,9 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.persistence.PersistentDataType;
+import org.zombiesplugin.zombies.VillagerShop.IVillagerShopAction;
+import org.zombiesplugin.zombies.VillagerShop.VillagerShop;
+import org.zombiesplugin.zombies.VillagerShop.VillagerShopActionEvent;
 
 import java.util.List;
 
@@ -30,6 +34,17 @@ public class BedWarsListener implements Listener {
                 new NamespacedKey(Zombies.Instance, "shop_button"), PersistentDataType.BOOLEAN, false);
 
         if(isShopButton) {
+            /**
+             * Get the action tag used to call a function associated with a shop button item.
+             */
+            String actionTag = item.getItemMeta().getPersistentDataContainer().getOrDefault(
+                    new NamespacedKey(Zombies.Instance, "action_tag"), PersistentDataType.STRING, "");
+
+            /**
+             * Call function associated with shop button
+             */
+            IVillagerShopAction.Actions.get(actionTag).Action(new VillagerShopActionEvent((Player)event.getWhoClicked(), item, null));
+
             event.setCancelled(true);
         }
     }
@@ -50,7 +65,7 @@ public class BedWarsListener implements Listener {
             }
 
             if(villagerMetadata.get(0).value() instanceof Boolean) {
-                BedWarsUpgradeShop shop = new BedWarsUpgradeShop(event.getPlayer());
+                VillagerShop shop = new VillagerShop(event.getPlayer());
                 shop.OpenInventory();
             }
         }

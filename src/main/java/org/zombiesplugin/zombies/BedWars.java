@@ -6,21 +6,24 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import javax.annotation.Nullable;
 import java.util.*;
 
 public class BedWars {
     /**
      *  Contains all active wars
-     * */
+     */
     public final static Map<UUID, BedWars> ActiveBedWars = new HashMap<>();
 
     /**
      * Contains active players in current bed war
-     * **/
+     */
     private final List<Player> Players = new ArrayList<>();
-    private final CurrencyType CurrencySpawnUpgrade = CurrencyType.Coal;
+
+    /**
+     * Indicates upgrade to spawn currency
+     */
+    public CurrencyType CurrencySpawnUpgrade = CurrencyType.Coal;
 
     private final World MainWorld;
 
@@ -39,7 +42,7 @@ public class BedWars {
 
     /**
      * Spawns currency at currency spawn location
-     * **/
+     */
     private void SpawnCurrency(CurrencyType type) {
         Location spawnLocation =  new Location(MainWorld, 251.5d, 36.5d, 181.5d);
 
@@ -47,7 +50,7 @@ public class BedWars {
         ItemStack item = null;
         /**
          * Set item to its currency type
-         * **/
+         */
         switch (type){
             case Coal:
                 item = new ItemStack(Material.COAL);

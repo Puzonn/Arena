@@ -1,4 +1,4 @@
-package org.zombiesplugin.zombies;
+package org.zombiesplugin.zombies.VillagerShop;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -9,13 +9,18 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.zombiesplugin.zombies.Zombies;
 
-public class BedWarsUpgradeShop {
+public class VillagerShop {
+    /**
+     * Player who interacted with villager.
+     */
     private final Player owner;
+
     /**
      * @param owner Player who interacted with villager.
-     **/
-    public BedWarsUpgradeShop(Player owner) {
+     */
+    public VillagerShop(Player owner) {
         this.owner = owner;
     }
 
@@ -25,9 +30,10 @@ public class BedWarsUpgradeShop {
     public void OpenInventory() {
         Inventory inventory = Bukkit.createInventory(owner, InventoryType.CHEST, "Team Upgrades");
 
-        inventory.setItem(1, CreateShopButton(Material.COAL));
-        inventory.setItem(3, CreateShopButton(Material.LEATHER_CHESTPLATE));
-
+        /**
+         * Add here shop buttons
+         * @example inventory.setItem(0, CreateShopButton("tag", Material, IVillagerShopAction));
+         */
         owner.openInventory(inventory);
     }
 
@@ -36,11 +42,15 @@ public class BedWarsUpgradeShop {
      * @param material Material of this button.
      * @return ItemStack as shop button.
      */
-    private ItemStack CreateShopButton(Material material) {
+    private ItemStack CreateShopButton(String tag, Material material, IVillagerShopAction action) {
         ItemStack item = new ItemStack(material);
         ItemMeta meta = item.getItemMeta();
+
         meta.getPersistentDataContainer().set(new NamespacedKey(Zombies.Instance, "shop_button"), PersistentDataType.BOOLEAN, true);
+        meta.getPersistentDataContainer().set(new NamespacedKey(Zombies.Instance, "action_tag"), PersistentDataType.STRING, tag);
         item.setItemMeta(meta);
+
+        IVillagerShopAction.Actions.putIfAbsent(tag, action);
 
         return item;
     }
