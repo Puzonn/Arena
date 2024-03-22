@@ -11,7 +11,7 @@ import java.util.*;
 public class Arena {
     private final Random rnd = new Random();
     private boolean ArenaStarted = false;
-
+    //Uwuu
     private final List<LivingEntity> WaveEntities = new ArrayList<LivingEntity>();
     public final List<Player> ArenaPlayers = new ArrayList<>();
 
