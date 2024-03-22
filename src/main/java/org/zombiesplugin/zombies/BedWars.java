@@ -3,7 +3,6 @@ package org.zombiesplugin.zombies;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -21,6 +20,7 @@ public class BedWars {
      * Contains active players in current bed war
      * **/
     private final List<Player> Players = new ArrayList<>();
+    private final CurrencyType CurrencySpawnUpgrade = CurrencyType.Coal;
 
     private final World MainWorld;
 
@@ -32,7 +32,7 @@ public class BedWars {
         new BukkitRunnable() {
             @Override
             public void run() {
-                SpawnCurrency(CurrencyType.Coal);
+                SpawnCurrency(CurrencySpawnUpgrade);
             }
         }.runTaskTimer(Zombies.Instance, 0, 100L);
     }
@@ -49,10 +49,12 @@ public class BedWars {
          * Set item to its currency type
          * **/
         switch (type){
-            case Coal: {
+            case Coal:
                 item = new ItemStack(Material.COAL);
                 break;
-            }
+            case Iron:
+                item = new ItemStack(Material.IRON_BARS);
+                break;
         }
 
         if(item == null) {
