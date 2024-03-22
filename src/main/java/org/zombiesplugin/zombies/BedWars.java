@@ -11,17 +11,17 @@ import java.util.*;
 
 public class BedWars {
     /**
-     *  Contains all active wars
+     *  Contains all active wars.
      */
     public final static Map<UUID, BedWars> ActiveBedWars = new HashMap<>();
 
     /**
-     * Contains active players in current bed war
+     * Contains active players in current bed war.
      */
     private final List<Player> Players = new ArrayList<>();
 
     /**
-     * Indicates upgrade to spawn currency
+     * Indicates upgrade to spawn currency.
      */
     public CurrencyType CurrencySpawnUpgrade = CurrencyType.Coal;
 
@@ -41,7 +41,7 @@ public class BedWars {
     }
 
     /**
-     * Spawns currency at currency spawn location
+     * Spawns currency at currency spawn location.
      */
     private void SpawnCurrency(CurrencyType type) {
         Location spawnLocation =  new Location(MainWorld, 251.5d, 36.5d, 181.5d);
@@ -49,7 +49,7 @@ public class BedWars {
         @Nullable
         ItemStack item = null;
         /**
-         * Set item to its currency type
+         * Set item to its currency type.
          */
         switch (type){
             case Coal:

@@ -31,7 +31,7 @@ public class VillagerShop {
         Inventory inventory = Bukkit.createInventory(owner, InventoryType.CHEST, "Team Upgrades");
 
         /**
-         * Add here shop buttons
+         * Add here shop buttons.
          * @example inventory.setItem(0, CreateShopButton("tag", Material, IVillagerShopAction));
          */
         owner.openInventory(inventory);

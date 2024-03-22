@@ -6,16 +6,16 @@ import org.zombiesplugin.zombies.BedWars;
 
 public class VillagerShopActionEvent {
     /**
-     * Indicates who clicked button
+     * Indicates who clicked button.
      */
     public Player player;
     /**
-     * Indicates what item/button have been clicked
+     * Indicates what item/button have been clicked.
      */
     public ItemStack item;
 
     /**
-     * Indicates bed that player owns
+     * Indicates bed that player owns.
      */
     public BedWars bed;
 

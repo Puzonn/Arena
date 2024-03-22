@@ -41,7 +41,7 @@ public class BedWarsListener implements Listener {
                     new NamespacedKey(Zombies.Instance, "action_tag"), PersistentDataType.STRING, "");
 
             /**
-             * Call function associated with shop button
+             * Call function associated with shop button.
              */
             IVillagerShopAction.Actions.get(actionTag).Action(new VillagerShopActionEvent((Player)event.getWhoClicked(), item, null));
 
