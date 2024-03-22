@@ -5,9 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.zombiesplugin.zombies.ISpawnable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigInteger;
+import java.util.*;
 
 public abstract class IPassive extends ISpawnable {
     public final static HashMap<PassiveEventType, Set<IPassive>> Passives = new HashMap<>();
@@ -16,7 +15,7 @@ public abstract class IPassive extends ISpawnable {
 
     public PassiveEventType PassiveType;
 
-    public void DoWork(PassiveEventType type, Event event){
+    public void DoWork(PassiveEventType type, Event event) {
     }
 
     public final void RegisterPlayer(Player player) {

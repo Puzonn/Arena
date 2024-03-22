@@ -28,7 +28,7 @@ public class Arena {
 
     public Arena(World arenaWorld) {
         world = arenaWorld;
-        Locations = new ArenaLocations(new Location(world, 242, 38, 209), new Location(world, 324, 43 ,196));
+        Locations = new ArenaLocations(new Location(world, 242, 38, 209), new Location(world, 316, 43 ,196));
         Locations.AddEntitySpawnLocation(new Location(world, 225, 38, 198));
         SpawnTextInfo = CreateSpawnText();
         upgrader = new Upgrader(this);
@@ -64,36 +64,28 @@ public class Arena {
 
         Wave wave = spawner.CreateWave(CurrentWave);
 
-        for(WaveEntity waveEntity : wave.SpawnableEntities){
+        for(WaveEntity waveEntity : wave.SpawnableEntities) {
             Location location = Locations.GetRandomEntitySpawnLocation();
             LivingEntity entity = (LivingEntity) world.spawnEntity(location, waveEntity.Type);
             Monster monster = (Monster)entity;
             entity.setAI(true);
             monster.setTarget(ArenaPlayers.get(0));
+
+            /* Wave entity health scaling */
             double baseHealth = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue();
             double healthMultiplier = 1.1;
             double scaledHealth = baseHealth * Math.pow(healthMultiplier, CurrentWave - 1);
             entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(scaledHealth);
             entity.setHealth(scaledHealth);
             entity.setCustomNameVisible(true);
+
             AddEntity(entity);
             SetGlowingEffect(entity);
-            UpdateEntity(entity);
+            ArenaEntityNameManager.UpdateName(entity, 0d);
         }
     }
 
-    public void UpdateEntity(LivingEntity entity) {
-        if(!WaveEntities.contains(entity)){
-            return;
-        }
-
-        int entityMaxHealth = Math.round((float)entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getBaseValue());
-        int entityHealth = Math.round((float)entity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue());
-
-        entity.setCustomName(String.format("%d / %d", entityHealth, entityMaxHealth));
-    }
-
-    public void UpdateEntityOnDamage(LivingEntity entity, double damage) {
+    public void OnArenaEntityDamaged(LivingEntity entity, double damage) {
         if(!WaveEntities.contains(entity)){
             return;
         }
@@ -166,11 +158,8 @@ public class Arena {
         String username = event.getEntity().getName();
         String killer = event.getEntityType().name();
         ArenaBroadcastMessage(String.format("%s died by %s", username, killer));
-        Bukkit.getLogger().info("Killing all entites < ");
 
-        Bukkit.getPlayer("Puzonne").sendMessage("Count: "+WaveEntities.size());
         List<LivingEntity> _copy = new ArrayList<>(WaveEntities);
-        Bukkit.getPlayer("Puzonne").sendMessage("Count copy: "+_copy.size());
 
         for(LivingEntity entity : _copy) {
             WaveEntities.remove(entity);

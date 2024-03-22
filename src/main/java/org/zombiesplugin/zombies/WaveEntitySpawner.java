@@ -28,12 +28,13 @@ public class WaveEntitySpawner {
 
         List<WaveEntity> possibleEntities = AllEntities.stream().filter(x -> x.FromWave <= wave).collect(Collectors.toList());
 
-        Wave cWave = new Wave();
-        for(int i=0;i<mobsToSpawn;i++){
+        Wave cwave = new Wave();
+
+        for(int i=0;i<mobsToSpawn;i++) {
             WaveEntity entity = possibleEntities.get(rnd.nextInt(0, possibleEntities.size()));
-            cWave.SpawnableEntities.add(entity);
+            cwave.SpawnableEntities.add(entity);
         }
 
-        return cWave;
+        return cwave;
     }
 }

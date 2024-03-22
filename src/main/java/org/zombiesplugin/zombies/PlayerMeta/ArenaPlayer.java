@@ -3,8 +3,7 @@ package org.zombiesplugin.zombies.PlayerMeta;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ArenaPlayer {
     private static final Map<Player, ArenaPlayer> ArenaPlayers = new HashMap<>();
@@ -14,7 +13,7 @@ public class ArenaPlayer {
 
     private ArenaPlayer(Player player) {
         this.player = player;
-
+        ArenaPlayers.put(player, this);
         InitMetas();
     }
 
@@ -53,12 +52,14 @@ public class ArenaPlayer {
     }
 
     public void InitMetas() {
-        Metas.put(ArenaPlayerMetas.PhysicalDamage, 1f);
-        Metas.put(ArenaPlayerMetas.ElementalDamage, 1f);
+        Metas.put(ArenaPlayerMetas.PhysicalDamage, 1d);
+        Metas.put(ArenaPlayerMetas.ElementalDamage, 1d);
+        Metas.put(ArenaPlayerMetas.IncreasedElementalDamage, 1d);
 
-        Metas.put(ArenaPlayerMetas.Intelligence, 0f);
-        Metas.put(ArenaPlayerMetas.Strength, 0f);
+        Metas.put(ArenaPlayerMetas.Intelligence, 0d);
+        Metas.put(ArenaPlayerMetas.Strength, 0d);
 
-        Metas.put(ArenaPlayerMetas.SkillSize, 1f);
+        Metas.put(ArenaPlayerMetas.SkillSize, 1d);
+        Metas.put(ArenaPlayerMetas.IncreasedSkillSize, 1d);
     }
 }

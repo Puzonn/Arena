@@ -3,31 +3,24 @@ package org.zombiesplugin.zombies.Commands;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.material.MaterialData;
-import org.bukkit.persistence.PersistentDataType;
 import org.zombiesplugin.zombies.ArenasManager;
 import org.zombiesplugin.zombies.ItemBuilder;
 import org.zombiesplugin.zombies.Items.ArenaItem;
-import org.zombiesplugin.zombies.Items.ArenaItemMeta;
 import org.zombiesplugin.zombies.Items.ArenaItemMetas;
 import org.zombiesplugin.zombies.Mechanics.Forge;
 import org.zombiesplugin.zombies.Arena;
 import org.zombiesplugin.zombies.PlayerMeta.ArenaPlayer;
-import org.zombiesplugin.zombies.Zombies;
-
-import java.util.Dictionary;
 import java.util.Map;
 import java.util.Optional;
 
@@ -35,7 +28,7 @@ public class DevCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(args[0].equals("info")){
+        if(args[0].equals("info")){ // "info" != "info"
             Optional<Arena> arena = ArenasManager.GetArena(((Player)sender).getPlayer());
 
             if(arena.isPresent()) {
@@ -47,20 +40,18 @@ public class DevCommands implements CommandExecutor {
             ArenaPlayer arenaPlayer = ArenaPlayer.Get(((Player) sender).getPlayer());
 
             for(Map.Entry<String, Object> entry : arenaPlayer.Metas.entrySet()) {
-                sender.sendMessage(String.format("%s %.2f", entry.getKey(), ((Float) entry.getValue())));
+                sender.sendMessage(String.format("%s %.2f", entry.getKey(), ((double) entry.getValue())));
             }
         }
-        if(args[0].equals("start")) {
+        else if(args[0].equals("start")) {
             Optional<Arena> arena = ArenasManager.GetArena(((Player) sender).getPlayer());
             if(arena.isPresent()){
-                arena.get().OnArenaStart(((Player) sender).getPlayer())
-                        .SetWave(4);
+                arena.get().OnArenaStart(((Player) sender).getPlayer());
 
             }
             else{
                 ArenasManager.CreateArena(((Player) sender).getWorld())
-                        .OnArenaStart(((Player) sender).getPlayer())
-                        .SetWave(4);
+                        .OnArenaStart(((Player) sender).getPlayer());
             }
         }
         else if(args[0].equals("s")){
@@ -96,7 +87,12 @@ public class DevCommands implements CommandExecutor {
             player.getInventory().addItem(arenaItem.item);
         }
         else if(args[0].equals("c")) {
-            
+            Player player = (Player)sender;
+            ItemStack item = player.getInventory().getItemInMainHand();
+            ItemMeta meta = item.getItemMeta();
+            meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, new AttributeModifier("generic.attackSpeed", 100, Operation.ADD_NUMBER));
+            meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier("generic.attackDamage", 1, Operation.ADD_NUMBER));
+            item.setItemMeta(meta);
         }
         return true;
     }

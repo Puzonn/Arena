@@ -7,11 +7,11 @@ import java.util.Random;
 public class ArenaItemMeta {
     public final String DisplayName;
     public final String MetaName;
-    public final float MinMetaValue;
-    public final float MaxMetaValue;
-    public float MetaValue;
+    public final double MinMetaValue;
+    public final double MaxMetaValue;
+    public double MetaValue;
 
-    public ArenaItemMeta(String displayName, String metaName, float minValue, float maxValue) {
+    public ArenaItemMeta(String displayName, String metaName, double minValue, double maxValue) {
         DisplayName = displayName;
         MetaName = metaName;
         MaxMetaValue = maxValue;
@@ -35,7 +35,6 @@ public class ArenaItemMeta {
 
     private void SetMetaValue() {
         Random rnd = new Random();
-        MetaValue = rnd.nextFloat(MinMetaValue, MaxMetaValue);
-        Bukkit.getPlayer("Puzonne").sendMessage("New value: " +MetaValue);
+        MetaValue = rnd.nextDouble(MinMetaValue, MaxMetaValue);
     }
 }

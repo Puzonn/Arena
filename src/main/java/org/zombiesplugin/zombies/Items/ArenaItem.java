@@ -8,6 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.zombiesplugin.zombies.Zombies;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class ArenaItem {

@@ -11,6 +11,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.zombiesplugin.zombies.ISpawnable;
+import org.zombiesplugin.zombies.PlayerMeta.ArenaPlayer;
+import org.zombiesplugin.zombies.PlayerMeta.ArenaPlayerMetas;
 import org.zombiesplugin.zombies.UpgradeRarity;
 import org.zombiesplugin.zombies.Zombies;
 
@@ -19,26 +21,28 @@ import java.util.Collection;
 public class BoostSkill extends ISkill {
     private int iteration = 0;
 
-    public BoostSkill() {
+    public BoostSkill(Item item, ArenaPlayer player) {
+        super(item, player);
+
         this.Name = "Boost";
         this.Rarity = UpgradeRarity.Common;
     }
 
     @Override
-    public void Activate(Location location, World world) {
-        skillLocation = location;
-        CreateTextComponent(this.Name);
-
+    public void Activate() {
         runner = new BukkitRunnable() {
             @Override
             public void run() {
-                if(iteration % 2 == 0){
-                    DoBoost();
-                }
+                double skillRadius = 5 + (double)player.GetMeta(ArenaPlayerMetas.SkillSize) * (double)player.GetMeta(ArenaPlayerMetas.IncreasedSkillSize);
+                Location location = item.getLocation();
+
+                DoBoost(location, skillRadius);
+
                 if(iteration == 20){
                     DestroySkill();
                     cancel();
                 }
+
                 iteration ++;
             }
         };
@@ -46,8 +50,8 @@ public class BoostSkill extends ISkill {
         runner.runTaskTimer(Zombies.Instance, 0L, 35L);
     }
 
-    private void DoBoost() {
-        Collection<Entity> entities = skillLocation.getWorld().getNearbyEntities(skillLocation, 8, 5, 8);
+    private void DoBoost(Location location, double radius) {
+        Collection<Entity> entities = location.getWorld().getNearbyEntities(location, radius, 5, radius);
 
         for(Entity entity : entities) {
             if(entity instanceof Player){

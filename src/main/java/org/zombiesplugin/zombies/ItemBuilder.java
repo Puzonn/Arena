@@ -1,12 +1,10 @@
 package org.zombiesplugin.zombies;
 
-import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.zombiesplugin.zombies.Items.ArenaItem;
 import org.zombiesplugin.zombies.Items.ArenaItemMeta;

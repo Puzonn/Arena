@@ -15,6 +15,7 @@ public final class Zombies extends JavaPlugin {
     public void onEnable() {
         Instance = this;
         getServer().getPluginManager().registerEvents(new ArenaListener(), this);
+
         getCommand("arena").setExecutor(new ArenaStartCommand());
         getCommand("dev").setExecutor(new DevCommands());
 

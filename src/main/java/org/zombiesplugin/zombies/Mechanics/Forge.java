@@ -103,7 +103,7 @@ public class Forge {
 
         ItemStack btn_forge = new ItemStack(Material.ANVIL);
         ItemMeta meta = btn_forge.getItemMeta();
-        meta.setDisplayName("§c Forge");
+        meta.setDisplayName("§cForge");
         meta.getPersistentDataContainer().set(new NamespacedKey(Zombies.Instance, "button_forge"), PersistentDataType.BOOLEAN, true);
         btn_forge.setItemMeta(meta);
 

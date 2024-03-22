@@ -53,7 +53,7 @@ public class ArenasManager {
     public static void onArenaEntityDamagedHandler(EntityDamageEvent event) {
         for(Arena arena : Arenas) {
             if(arena.HasEntity((LivingEntity) event.getEntity())){
-                ArenaEntityNameManager.UpdateName((LivingEntity) event.getEntity());
+                ArenaEntityNameManager.UpdateName((LivingEntity) event.getEntity(), event.getDamage());
                 break;
             }
         }
