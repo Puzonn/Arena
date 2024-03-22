@@ -25,7 +25,7 @@ public class BedWarsUpgradeShop {
     public void OpenInventory() {
         Inventory inventory = Bukkit.createInventory(owner, InventoryType.CHEST, "Team Upgrades");
 
-        inventory.setItem(1, CreateShopButton(Material.WOODEN_SWORD));
+        inventory.setItem(1, CreateShopButton(Material.COAL));
         inventory.setItem(3, CreateShopButton(Material.LEATHER_CHESTPLATE));
 
         owner.openInventory(inventory);

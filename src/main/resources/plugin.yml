@@ -10,3 +10,6 @@ commands:
   dev:
       description: Dev Commands
       usage: /dev
+  bed:
+    description: Bed Wars Commands
+    usage: /bed
