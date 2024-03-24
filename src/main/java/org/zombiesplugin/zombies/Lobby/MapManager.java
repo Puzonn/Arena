@@ -16,12 +16,12 @@ public class MapManager {
      * @param mapName Name of the world/map in the server directory.
      * @return True if duplication is successful, false otherwise.
      */
-    public static boolean duplicateMap(String mapName) {
+    public static LobbyMapCreatedResult duplicateMap(String mapName) {
         Path worldPath = Paths.get(String.format("./%s", mapName));
 
         if (!Files.isDirectory(worldPath)) {
             Bukkit.getLogger().log(Level.WARNING, "[MapManager] Map directory not found: " + mapName);
-            return false;
+            return new LobbyMapCreatedResult();
         }
 
         UUID uuid = UUID.randomUUID();
@@ -41,11 +41,11 @@ public class MapManager {
                         }
                     });
 
-            Bukkit.getLogger().log(Level.INFO, "[MapManager] Map duplicated successfully: " + uuid.toString());
-            return true;
+            Bukkit.getLogger().log(Level.INFO, "[MapManager] Map duplicated successfully: " + uuid);
+            return new LobbyMapCreatedResult(uuid);
         } catch (IOException e) {
             Bukkit.getLogger().log(Level.SEVERE, "[MapManager] Error duplicating map: " + e.getMessage());
-            return false;
+            return new LobbyMapCreatedResult();
         }
     }
 }

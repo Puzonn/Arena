@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
@@ -29,6 +30,9 @@ public class BedWarsCommand implements CommandExecutor {
         }
         else if(args[0].equals("boss")) {
             new TestIslandBoss(((Player)commandSender).getLocation());
+        }
+        else if(args[0].equals("create")) {
+
         }
         return false;
     }
