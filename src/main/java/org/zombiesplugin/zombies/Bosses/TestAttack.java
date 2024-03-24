@@ -1,4 +1,4 @@
-package org.zombiesplugin.zombies.Boss;
+package org.zombiesplugin.zombies.Bosses;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;

@@ -1,4 +1,4 @@
-package org.zombiesplugin.zombies.Boss;
+package org.zombiesplugin.zombies.Bosses;
 
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -6,7 +6,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.zombiesplugin.zombies.Zombies;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class TestIslandBoss {
     private final LivingEntity BossEntity;

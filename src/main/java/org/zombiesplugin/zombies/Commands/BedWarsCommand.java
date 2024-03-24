@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.zombiesplugin.zombies.BedWars;
-import org.zombiesplugin.zombies.Boss.TestIslandBoss;
+import org.zombiesplugin.zombies.Bosses.TestIslandBoss;
 import org.zombiesplugin.zombies.Zombies;
 
 public class BedWarsCommand implements CommandExecutor {
