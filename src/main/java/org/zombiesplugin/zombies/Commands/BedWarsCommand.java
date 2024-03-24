@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.zombiesplugin.zombies.BedWars;
+import org.zombiesplugin.zombies.Boss.TestIslandBoss;
 import org.zombiesplugin.zombies.Zombies;
 
 public class BedWarsCommand implements CommandExecutor {
@@ -25,6 +26,9 @@ public class BedWarsCommand implements CommandExecutor {
             villager.setCustomName(ChatColor.YELLOW + ""+ ChatColor.BOLD+ "Team Upgrades");
             villager.setCustomNameVisible(true);
             villager.setMetadata("villager_upgrade", new FixedMetadataValue(Zombies.Instance, true));
+        }
+        else if(args[0].equals("boss")) {
+            new TestIslandBoss(((Player)commandSender).getLocation());
         }
         return false;
     }
