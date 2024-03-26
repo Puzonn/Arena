@@ -13,3 +13,6 @@ commands:
   bed:
     description: Bed Wars Commands
     usage: /bed
+  aha:
+    description: Aha
+    usage: /aha
