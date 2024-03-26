@@ -56,6 +56,5 @@ public class Teams {
 		}
 		teaMap.put(pickColors, _);
 		
-		Bukkit.getPlayer("Xwaw").sendMessage(teaMap.toString());
 	}
 }
