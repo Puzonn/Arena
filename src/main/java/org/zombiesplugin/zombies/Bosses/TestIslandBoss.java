@@ -9,8 +9,7 @@ import java.util.*;
 
 public class TestIslandBoss {
     private final LivingEntity BossEntity;
-    private List<IBossAttack> Attacks = new ArrayList<>();
-
+    private final List<IBossAttack> Attacks = new ArrayList<>();
     private IBossAttack currentAttack;
 
     public TestIslandBoss(Location spawnLocation) {
@@ -28,6 +27,10 @@ public class TestIslandBoss {
                     currentAttack.ResetAttack();
 
                     currentAttack = RollAttack();
+                }
+
+                if(BossEntity.isDead()) {
+                    cancel();
                 }
 
                 currentAttack.Attack();

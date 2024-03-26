@@ -11,6 +11,7 @@ import org.bukkit.entity.Villager;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.zombiesplugin.zombies.BedWars;
 import org.zombiesplugin.zombies.Bosses.TestIslandBoss;
+import org.zombiesplugin.zombies.Lobby.IslandMap;
 import org.zombiesplugin.zombies.Zombies;
 
 public class BedWarsCommand implements CommandExecutor {
@@ -21,7 +22,7 @@ public class BedWarsCommand implements CommandExecutor {
         }
         else if(args[0].equals("spawn")) {
             Player player = (Player)commandSender;
-            Villager villager =(Villager) player.getWorld().spawnEntity(player.getLocation(), EntityType.VILLAGER);
+            Villager villager = (Villager) player.getWorld().spawnEntity(player.getLocation(), EntityType.VILLAGER);
             villager.setAI(false);
             villager.setInvulnerable(true);
             villager.setCustomName(ChatColor.YELLOW + ""+ ChatColor.BOLD+ "Team Upgrades");
@@ -32,7 +33,12 @@ public class BedWarsCommand implements CommandExecutor {
             new TestIslandBoss(((Player)commandSender).getLocation());
         }
         else if(args[0].equals("create")) {
-
+            String mapName = args[1];
+            IslandMap.Maps.putIfAbsent(mapName, new IslandMap());
+        }
+        else if(args[0].equals("add")) {
+            String mapName = args[1];
+            IslandMap map = IslandMap.Maps.get(mapName);
         }
         return false;
     }

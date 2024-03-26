@@ -41,7 +41,6 @@ public class TestAttack extends BossAttack {
                     .toArray(Player[]::new);
 
             Random rnd = new Random();
-
             EngagedLocation = players[rnd.nextInt(0, players.length)].getLocation();
         }
 

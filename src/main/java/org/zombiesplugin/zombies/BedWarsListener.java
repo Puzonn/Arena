@@ -14,11 +14,9 @@ import org.bukkit.persistence.PersistentDataType;
 import org.zombiesplugin.zombies.VillagerShop.IVillagerShopAction;
 import org.zombiesplugin.zombies.VillagerShop.VillagerShop;
 import org.zombiesplugin.zombies.VillagerShop.VillagerShopActionEvent;
-
 import java.util.List;
 
 public class BedWarsListener implements Listener {
-
     @EventHandler
     private void onPlayerShopInteract(InventoryClickEvent event) {
         ItemStack item = event.getCurrentItem();

@@ -9,6 +9,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.zombiesplugin.zombies.Zombies;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestAttack2 extends BossAttack {
     private BukkitTask runner;
 
